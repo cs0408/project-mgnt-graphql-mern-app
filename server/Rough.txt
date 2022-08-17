@@ -1,0 +1,79 @@
+==========> Get All Clients return with id, name, email, phone
+
+    query
+    {
+        clients{
+            id, name, email, phone
+        }
+    }
+
+==========> Get Client with id and return with id, name, email, phone
+
+    query
+    {
+        client(id:"62fc863f447ebf564132511d"){
+            id, name, email, phone
+        }
+    }
+
+==========> Get All Projects and return with id, clientId, description, status
+
+    query
+    {
+        projects{
+            id, clientId, description, status
+        }
+    }
+    
+==========> Get All Projects and return with id, clientId, description, status, and client return with id, name, email, phone
+
+    query
+    {
+        projects{
+            id, clientId, description, status, client{
+                id, name, email, phone
+            }
+        }
+    }
+
+==========> Get Project with clientId and return with id, clientId, description, status, and client return with id, name, email, phone
+
+    query
+    {
+        project(clientId:"62fc863f447ebf564132511d"){
+            id, clientId, description, status, client{
+                id, name, email, phone
+            }
+        }
+    }
+
+==========> Add Client and return with id, name, email, phone
+
+    mutation
+    {
+        addClient(name:"John", email:"john@gmail.com", phone:"123-456-7890"){
+            id, name, email, phone
+        }
+    }
+
+==========> Add Project and return with id, name, description (without pass status)
+
+    mutation
+    {
+        addProject(name:"Apple Watch", description:"This is apple watch",clientId:"62fc9302debadeddc419de61"){
+            id, description, status, clientId, client{
+                id, name, email, phone
+            }
+        }
+    }
+
+==========> Add Project and return with id, name, description (with pass status)
+
+    mutation
+    {
+        addProject(name:"Apple Watch", description:"This is apple watch", status:completed, clientId:"62fc9302debadeddc419de61"){
+            id, description, status, clientId, client{
+                id, name, email, phone
+            }
+        }
+    }
